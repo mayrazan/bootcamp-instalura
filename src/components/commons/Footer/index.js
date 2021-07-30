@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const FooterWrapper = styled.footer`
   padding: 14px;
@@ -35,7 +35,8 @@ export default function Footer(props) {
         />
       </a>
       <p>
-        Orgulhosamente criado durante o{" "}
+        Orgulhosamente criado durante o
+        {' '}
         <a href="https://www.alura.com.br/">
           <span>Bootcamp Alura JAM Stack</span>
         </a>
