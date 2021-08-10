@@ -139,6 +139,8 @@ const Grid = {
     ${propToStyle('justifyContent')}
     ${propToStyle('flexDirection')}
     ${propToStyle('paddingRight')}
+    ${propToStyle('padding')}
+    ${propToStyle('backgroundColor')}
   `,
 };
 
