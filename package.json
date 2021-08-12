@@ -6,11 +6,17 @@
     "export": "next build && next export",
     "start": "next start",
     "lint": "eslint --ignore-path .gitignore .",
-    "custom-script": "node ./script-test.js"
+    "lint:fix": "yarn lint --fix",
+    "custom-script": "node ./script-test.js",
+    "prepare": "husky install",
+    "commit": "cz",
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "@crello/react-lottie": "^0.0.11",
+    "commitizen": "^4.2.4",
     "framer-motion": "^4.1.17",
+    "init": "^0.1.2",
     "lodash": "^4.17.21",
     "next": "latest",
     "prop-types": "^15.7.2",
@@ -20,8 +26,16 @@
     "styled-components": "^5.2.3",
     "styled-normalize": "^8.0.7"
   },
+  "lint-staged": {
+    "*.js": [
+      "yarn lint:fix"
+    ]
+  },
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "babel-plugin-styled-components": "^1.12.0",
+    "cz-conventional-changelog": "3.3.0",
     "eslint": "^7.31.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-next": "^11.0.1",
@@ -29,7 +43,20 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.2",
     "shelljs": "^0.8.4"
   },
-  "license": "MIT"
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
