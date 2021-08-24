@@ -1,9 +1,6 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
-import theme from '../src/theme';
-import GlobalStyle from '../src/theme/GlobalStyle';
 
 export default function App(props) {
   const { Component, pageProps } = props;
@@ -16,17 +13,15 @@ export default function App(props) {
           rel="stylesheet"
         />
       </Head>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <Component {...pageProps} />
-      </ThemeProvider>
+
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <Component {...pageProps} />
+
     </>
   );
 }
 
 App.propTypes = {
   Component: PropTypes.elementType.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  pageProps: PropTypes.object.isRequired,
+  pageProps: PropTypes.shape({}).isRequired,
 };
