@@ -41,10 +41,10 @@ function FormContent({ isOpen }) {
   });
 
   function handleChange(event) {
-    const fieldName = event.target.getAttribute('name');
+    const { name, value } = event.target;
     setUserInfo({
       ...userInfo,
-      [fieldName]: event.target.value,
+      [name]: value,
     });
   }
 
