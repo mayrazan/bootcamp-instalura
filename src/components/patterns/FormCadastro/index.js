@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Lottie } from '@crello/react-lottie';
 import styled from 'styled-components';
 import errorAnimation from './animations/error.json';
@@ -40,13 +40,16 @@ function FormContent({ isOpen }) {
     nome: 'Mayra',
   });
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setUserInfo({
-      ...userInfo,
-      [name]: value,
-    });
-  }
+  const handleChange = useCallback(
+    (event) => {
+      const { name, value } = event.target;
+      setUserInfo((state) => ({
+        ...state,
+        [name]: value,
+      }));
+    },
+    [userInfo],
+  );
 
   const isFormInvalid = userInfo.usuario.length === 0 || userInfo.nome.length === 0;
 
