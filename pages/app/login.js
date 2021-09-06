@@ -1,61 +1,12 @@
-import React, { useCallback } from 'react';
-import Button from '../../src/components/commons/Button';
+import React from 'react';
 import Link from '../../src/components/commons/Link';
-import TextField from '../../src/components/forms/TextField';
+import LoginForm from '../../src/components/patterns/FormLogin';
 import Box from '../../src/components/layout/Box';
 import Grid from '../../src/components/layout/Grid';
 import Text from '../../src/components/foundation/Text';
 import { WebsitePageContext } from '../../src/components/wrappers/WebsitePage';
 import websitePageHOC from '../../src/components/wrappers/WebsitePage/hoc';
 import Logo from '../../src/theme/Logo';
-
-function LoginForm() {
-  const [userInfo, setUserInfo] = React.useState({
-    usuario: 'mayrazan',
-    senha: '12345',
-  });
-
-  const handleChange = useCallback(
-    (event) => {
-      const { name, value } = event.target;
-      setUserInfo((state) => ({
-        ...state,
-        [name]: value,
-      }));
-    },
-    [userInfo],
-  );
-
-  return (
-    <form id="formCadastro" action="/app/profile">
-      <TextField
-        placeholder="Usuário"
-        name="usuario"
-        value={userInfo.usuario}
-        onChange={handleChange}
-      />
-      <TextField
-        placeholder="Senha"
-        name="senha"
-        type="password"
-        value={userInfo.senha}
-        onChange={handleChange}
-      />
-
-      <Button
-        type="submit"
-        variant="primary.main"
-        margin={{
-          xs: '0 auto',
-          md: 'initial',
-        }}
-        fullWidth
-      >
-        Entrar
-      </Button>
-    </form>
-  );
-}
 
 function LoginScreen() {
   const websitePageContext = React.useContext(WebsitePageContext);

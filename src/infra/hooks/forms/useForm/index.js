@@ -1,0 +1,21 @@
+import React from 'react';
+
+export function useForm({ initialValues, onSubmit }) {
+  const [values, setValues] = React.useState(initialValues);
+
+  return {
+    values,
+    handleSubmit(event) {
+      event.preventDefault();
+      onSubmit(values);
+    },
+    handleChange(event) {
+      const { name, value } = event.target;
+
+      setValues((currentValues) => ({
+        ...currentValues,
+        [name]: value,
+      }));
+    },
+  };
+}
