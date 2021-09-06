@@ -6,4 +6,5 @@ module.exports = {
     '<rootDir>/cypress/',
     '<rootDir>/dist/',
   ],
+  testEnvironment: 'jsdom',
 };
