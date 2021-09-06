@@ -1,4 +1,4 @@
-import breakpointsMedia from './breakpointsMedia';
+import breakpointsMedia from '../breakpointsMedia';
 
 export default function propToStyle(propName) {
   // eslint-disable-next-line consistent-return
@@ -12,6 +12,13 @@ export default function propToStyle(propName) {
     }
 
     if (typeof propValue === 'object') {
+      // const breakpoints = {};
+
+      // if (propValue.xs) breakpoints.xs = { [propName]: propValue.xs };
+      // if (propValue.md) breakpoints.md = { [propName]: propValue.md };
+
+      // return breakpointsMedia(breakpoints);
+
       return breakpointsMedia({
         xs: {
           [propName]: propValue.xs,
