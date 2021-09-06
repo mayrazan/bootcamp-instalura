@@ -11,7 +11,8 @@
     "prepare": "husky install",
     "commit": "cz",
     "lint-staged": "lint-staged",
-    "test:integration:open": "cypress open"
+    "test:integration:open": "cypress open",
+    "test:integration": "cypress run --headless"
   },
   "dependencies": {
     "@crello/react-lottie": "^0.0.11",
