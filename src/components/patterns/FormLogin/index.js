@@ -1,12 +1,15 @@
 /* eslint-disable no-console */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Lottie } from '@crello/react-lottie';
 import { useRouter } from 'next/router';
 import * as yup from 'yup';
 import Button from '../../commons/Button';
 import TextField from '../../forms/TextField';
+import Box from '../../layout/Box';
 import { useForm } from '../../../infra/hooks/forms/useForm';
 import { loginService } from '../../../services/login/loginService';
+import errorAnimation from '../FormCadastro/animations/error.json';
 
 const loginSchema = yup.object().shape({
   usuario: yup
@@ -38,8 +41,8 @@ export default function LoginForm({ onSubmit }) {
           router.push('/app/profile');
         })
         .catch((err) => {
-          // Desafio: Mostrar o erro na tela
           console.error(err);
+          form.setSubmissionStatus(form.formStates.ERROR);
         })
         .finally(() => {
           form.setIsFormDisabled(false);
@@ -51,7 +54,7 @@ export default function LoginForm({ onSubmit }) {
       });
     },
   });
-
+  console.log(form.formStates.ERROR, form.isFormSubmited, form.submissionStatus);
   return (
     <form id="formCadastro" onSubmit={onSubmit || form.handleSubmit}>
       <TextField
@@ -86,6 +89,19 @@ export default function LoginForm({ onSubmit }) {
       >
         Entrar
       </Button>
+      {form.isFormSubmited && form.submissionStatus === form.formStates.ERROR && (
+        <Box display="flex" justifyContent="center">
+          <Lottie
+            width="100px"
+            height="100px"
+            config={{
+              animationData: errorAnimation,
+              loop: true,
+              autoplay: true,
+            }}
+          />
+        </Box>
+      )}
     </form>
   );
 }

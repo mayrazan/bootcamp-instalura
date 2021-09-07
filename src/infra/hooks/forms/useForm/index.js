@@ -13,11 +13,20 @@ function formatErrors(yupErrorsInner = []) {
 }
 
 export function useForm({ initialValues, onSubmit, validateSchema }) {
+  const formStates = {
+    DEFAULT: 'DEFAULT',
+    LOADING: 'LOADING',
+    DONE: 'DONE',
+    ERROR: 'ERROR',
+  };
   const [values, setValues] = React.useState(initialValues);
-
   const [isFormDisabled, setIsFormDisabled] = React.useState(true);
   const [errors, setErrors] = React.useState({});
   const [touched, setTouchedFields] = React.useState({});
+  const [isFormSubmited, setIsFormSubmited] = React.useState(false);
+  const [submissionStatus, setSubmissionStatus] = React.useState(
+    formStates.DEFAULT,
+  );
 
   async function validateValues(currentValues) {
     try {
@@ -35,12 +44,14 @@ export function useForm({ initialValues, onSubmit, validateSchema }) {
     validateValues(values).catch((err) => {
       console.log(err);
     });
+    setSubmissionStatus(formStates.DEFAULT);
   }, [values]);
 
   return {
     values,
     handleSubmit(event) {
       event.preventDefault();
+      setIsFormSubmited(true);
       onSubmit(values);
     },
     handleChange(event) {
@@ -55,6 +66,11 @@ export function useForm({ initialValues, onSubmit, validateSchema }) {
     setIsFormDisabled,
     errors,
     touched,
+    setIsFormSubmited,
+    isFormSubmited,
+    setSubmissionStatus,
+    submissionStatus,
+    formStates,
     handleBlur(event) {
       const { name } = event.target;
 
