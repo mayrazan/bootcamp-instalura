@@ -5,7 +5,7 @@ import { HttpClient } from '../../infra/http/HttpClient';
 
 const BASE_URL = isStagingEnv
   ? 'https://instalura-api-git-master-omariosouto.vercel.app'
-  : 'https://instalura-api.omariosouto.vercel.app';
+  : 'https://instalura-api-git-master.omariosouto.vercel.app'; // https://instalura-api.omariosouto.vercel.app
 
 export const LOGIN_COOKIE_APP_TOKEN = 'LOGIN_COOKIE_APP_TOKEN';
 
