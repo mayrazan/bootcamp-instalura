@@ -54,7 +54,7 @@ export default function LoginForm({ onSubmit }) {
       });
     },
   });
-  console.log(form.formStates.ERROR, form.isFormSubmited, form.submissionStatus);
+
   return (
     <form id="formCadastro" onSubmit={onSubmit || form.handleSubmit}>
       <TextField
