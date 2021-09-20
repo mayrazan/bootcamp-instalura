@@ -4,6 +4,8 @@ import Box from '../../layout/Box';
 import Grid from '../../layout/Grid';
 import Text from '../../foundation/Text';
 
+export { getContent } from './getContent';
+
 export default function AboutScreen({ messages }) {
   return (
     <Box display="flex" flexDirection="column" flex={1}>
