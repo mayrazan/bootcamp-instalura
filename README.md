@@ -1,20 +1,37 @@
-# Example app with styled-components
+# Instalura
 
-This example features how you use a different styling solution than [styled-jsx](https://github.com/vercel/styled-jsx) that also supports universal styles. That means we can serve the required styles for the first render within the HTML and then load the rest in the client. In this case we are using [styled-components](https://github.com/styled-components/styled-components).
+Projeto desenvolvido durante o bootcamp de frontend avançado JAMStack da Alura.
+Durante os módulos do bootcamp, passamos por estilizações dos componentes com styled-componentes, processo de integração e entrega contínua, validação de formulário, conceitos de arquitetura, vimos testes com Jest, Cypress e React Testing Library, como hospedar aplicações na vercel, como e o porquê de usar graphQL, como montar um design systems utilizando storybook, como trabalhar com monorepo configurando ambiente com yarn workspace, aprendemos a incluir typescript no projeto, fora inúmeras boas práticas que desenvolvemos ao longo desses módulos.
 
-For this purpose we are extending the `<Document />` and injecting the server side rendered styles into the `<head>`, and also adding the `babel-plugin-styled-components` (which is required for server side rendering). Additionally we set up a global [theme](https://www.styled-components.com/docs/advanced#theming) for styled-components using NextJS custom [`<App>`](https://nextjs.org/docs/advanced-features/custom-app) component.
+## Demo
 
-## Preview
+https://bootcamp-instalura.vercel.app/
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+## Run Locally
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-styled-components)
+Clone the project
 
-## Deploy your own
+```bash
+  git clone https://github.com/mayrazan/bootcamp-instalura.git
+```
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+Go to the project directory
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-styled-components&project-name=with-styled-components&repository-name=with-styled-components)
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  yarn install
+```
+
+Start the server
+
+```bash
+  yarn start
+```
 
 ## How to use
 
@@ -26,59 +43,94 @@ npx create-next-app --example with-styled-components with-styled-components-app
 yarn create next-app --example with-styled-components with-styled-components-app
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Tech Stack
 
-### Try it on CodeSandbox
+- React
+- NextJS
+- Styled-Components
+- Framer-motion
+- React Lottie
+- Prop-Types
 
-[Open this example on CodeSandbox](https://codesandbox.io/s/github/vercel/next.js/tree/canary/examples/with-styled-components)
+## Desafio Final
 
-### Notes
+**1) Criar a página /app/profile**
 
-When wrapping a [Link](https://nextjs.org/docs/api-reference/next/link) from `next/link` within a styled-component, the [as](https://styled-components.com/docs/api#as-polymorphic-prop) prop provided by `styled` will collide with the Link's `as` prop and cause styled-components to throw an `Invalid tag` error. To avoid this, you can either use the recommended [forwardedAs](https://styled-components.com/docs/api#forwardedas-prop) prop from styled-components or use a different named prop to pass to a `styled` Link.
+- Layout: [figma](https://www.figma.com/file/VkYdIpElN9qdnCfoZ2iwXG/Instalura?node-id=0%3A1)
 
-<details>
-<summary>Click to expand workaround example</summary>
-<br />
+- [ ] Criar o menu da área logado
+- [ ] Implementar em código React o layout da página de perfil usando toda a estrutura de componentes criada no módulo 1 e aprimorada ao longo do Curso (usando Grid, Text, Modal...)
 
-**components/StyledLink.js**
+**2) Criar o registro de imagens**
 
-```javascript
-import Link from 'next/link'
-import styled from 'styled-components'
+- [ ] No menu existe um botão "+" que ao ser clicado, deverá abrir um modal: [Layout](https://www.figma.com/file/VkYdIpElN9qdnCfoZ2iwXG/Instalura?node-id=81%3A1123)
+- [ ] Esse modal deverá receber uma URL, após isso o botão avançar irá ser mostrado
+- [ ] Após avançar, o usuário poderá clicar em um quadrado, estilo o próprio instagram, com o preview da URL que ele inseriu na etapa anterior.
+      [Layout](https://www.figma.com/file/VkYdIpElN9qdnCfoZ2iwXG/Instalura?node-id=81%3A1418)
+- [ ] Esse click vai uma classe CSS que aplica um filtro estilo instagram baseado nesse [projeto](https://picturepan2.github.io/instagram.css/)
+- [ ] [Carrossel](https://css-tricks.com/css-only-carousel/) para mostrar as diversas opções
+- [ ] Ao final, quando o usuário clicar em postar, deve ser enviado para esse endpoint: /api/posts/
+- [ ] O post deve aparecer no feed do usuário
 
-const StyledLink = ({ as, children, className, href }) => (
-  <Link href={href} as={as} passHref>
-    <a className={className}>{children}</a>
-  </Link>
-)
+**3) Criar a opção de dar like em uma foto do feed**
 
-export default styled(StyledLink)`
-  color: #0075e0;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
+- [ ] O botão de like por padrão não aparece, somente quando damos "focus" ou "hover" nas imagens
+- [ ] Ao clicar, o coração deverá ficar vermelho (fazer efeito com lottie é um bônus)
+- [ ] O número de likes deve incrementar ou decrementar
 
-  &:hover {
-    color: #40a9ff;
-  }
+**Obrigatório**
 
-  &:focus {
-    color: #40a9ff;
-    outline: none;
-    border: 0;
-  }
-`
+- [ ] Criar um Teste no cypress fazendo o fluxo de adicionar uma imagem no Feed
+
+**Testes**
+
+- [ ] Fazer lazy loading nas imagens do feed
+- [ ] Evite carregar todas na hora que a página carrega
+- [ ] Fazer testes para todos os serviços criados para abstrair conexão com backend e guardar lógicas em cima disso
+- [ ] Fazer testes para os componentes Criados
+
+## Endpoints Importantes para esse desafio
+
+**URL base da API: https://instalura-api.vercel.app/**
+
+**Login**
+URL: /api/login/
+Body:
+
+```json
+{
+  "username": "omariosouto",
+  "password": "senhasegura"
+}
 ```
 
-**pages/index.js**
+**Feed do Usuário**
+URL: /api/users/posts/
 
-```javascript
-import StyledLink from '../components/StyledLink'
+Headers: Lembrar de enviar o TOKEN do usuário em Authorization
 
-export default () => (
-  <StyledLink href="/post/[pid]" forwardedAs="/post/abc">
-    First post
-  </StyledLink>
-)
+**Criar post**
+URL: /api/posts/
+
+Headers: Lembrar de enviar o TOKEN do usuário em Authorization
+
+Body:
+
+```json
+{
+  "photoUrl": "https://unavatar.now.sh/github/omariosouto",
+  "description": "Legenda do post",
+  "filter": "none" // Remember to add options as named here: https://picturepan2.github.io/instagram.css/
+}
 ```
 
-</details>
+**Like/Dislike**
+URL: /api/posts/<ID>/like (ID exemplo: 60649c6682bf5808e2b0d472)
+
+Headers: Lembrar de enviar o TOKEN do usuário em Authorization
+
+Body:
+
+```json
+{}
+```
