@@ -1,12 +1,16 @@
 import React from 'react';
+import { useUserService } from '../../src/infra/hooks/useUserService';
 import { authService } from '../../src/services/auth/authService';
 import { userService } from '../../src/services/user/userService';
 
-export default function ProfilePage(props) {
+export default function ProfilePage() {
+  const { response } = useUserService();
   return (
     <div>
       Página de Profile!
-      <pre>{JSON.stringify(props, null, 4)}</pre>
+      {/* <pre>{JSON.stringify(props, null, 4)}</pre> */}
+      <pre>{JSON.stringify(response.data, null, 4)}</pre>
+      {/* {response.data} */}
       <img
         src="https://media.giphy.com/media/bn0zlGb4LOyo8/giphy.gif"
         alt="Nicolas Cage"
