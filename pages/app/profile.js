@@ -5,11 +5,9 @@ import { authService } from '../../src/services/auth/authService';
 import { userService } from '../../src/services/user/userService';
 
 function ProfilePage() {
-  const { data, loading } = useContextLoggedArea();
-  return loading ? (
-    <div>carregando</div>
-  ) : (
-    <div>
+  const { data } = useContextLoggedArea();
+  return (
+    <div style={{ margin: 'auto' }}>
       Página de Profile!
       <pre>{JSON.stringify(data.user, null, 4)}</pre>
       <img
@@ -27,6 +25,9 @@ export default websitePageLoggedHOC(ProfilePage, {
     },
     pageBoxProps: {
       backgroundColor: '#F2F2F2',
+    },
+    footerProps: {
+      display: true,
     },
   },
 });

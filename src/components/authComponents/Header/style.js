@@ -64,6 +64,11 @@ export const ListStyled = styled.ul`
 export const ImgStyled = styled.img`
   border-radius: 50%;
   width: 32px;
+
+  ${({ isActive }) => isActive
+    && css`
+      border: 3px solid #d7385e;
+    `}
 `;
 
 export default MenuWrapper;

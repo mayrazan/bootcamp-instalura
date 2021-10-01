@@ -11,4 +11,5 @@ export const WebsitePageLoggedContext = React.createContext({
   loading: true,
   posts: [],
   user: {},
+  username: '',
 });

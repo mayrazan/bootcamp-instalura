@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
 import Logo from '../../../theme/Logo';
 import MenuWrapper, { TextFieldStyled, ListStyled, ImgStyled } from './style';
 import Link from '../../commons/Link';
-import { useUserService } from '../../../infra/hooks/useUserService';
+import HomeIcon from '../SvgIcons/HomeIcon';
+import PostIcon from '../SvgIcons/PostIcon';
+import HeartIcon from '../SvgIcons/HeartIcon';
 
-export default function Header() {
+export default function Header({ username }) {
   const [search, setSearch] = useState('');
   const handleChange = (event) => setSearch(event.target.value);
-  const { user } = useUserService();
+  const { pathname } = useRouter();
 
-  return user.loading ? (
-    <div>carregando</div>
-  ) : (
+  return (
     <MenuWrapper>
       <MenuWrapper.LeftSide>
         <Logo size="medium" />
@@ -31,31 +33,35 @@ export default function Header() {
             {[
               {
                 id: 1,
-                icon: '/icons/postIcon.svg',
+                icon: <PostIcon size="desktop" />,
                 url: '/app/modal',
               },
               {
                 id: 2,
-                icon: '/icons/home.svg',
+                icon: <HomeIcon isActive={pathname === '/app/feed'} />,
                 url: '/app/feed',
               },
               {
                 id: 3,
-                icon: '/icons/heart.svg',
+                icon: <HeartIcon />,
                 url: '/app/like',
               },
               {
                 id: 4,
-                icon: `https://github.com/${user.data.username}.png`,
+                icon: `https://github.com/${username}.png`,
                 url: '/app/profile',
               },
             ].map((item) => (
               <li key={item.id}>
                 <Link href={item.url}>
                   {item.id === 4 ? (
-                    <ImgStyled src={item.icon} alt="" />
+                    <ImgStyled
+                      src={item.icon}
+                      alt="Foto de Perfil"
+                      isActive={pathname === item.url}
+                    />
                   ) : (
-                    <img src={item.icon} alt="" />
+                    item.icon
                   )}
                 </Link>
               </li>
@@ -66,3 +72,7 @@ export default function Header() {
     </MenuWrapper>
   );
 }
+
+Header.propTypes = {
+  username: PropTypes.string.isRequired,
+};
