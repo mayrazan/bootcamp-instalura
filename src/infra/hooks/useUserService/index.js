@@ -8,6 +8,12 @@ export const useUserService = () => {
     error: null,
   });
 
+  const [user, setUser] = useState({
+    data: null,
+    loading: true,
+    error: null,
+  });
+
   const getProfilePage = () => {
     userService
       .getProfilePage()
@@ -25,11 +31,31 @@ export const useUserService = () => {
       })));
   };
 
+  const getProfileInfo = () => {
+    userService
+      .getProfileInfo()
+      .then((res) => setUser((prevState) => ({
+        ...prevState,
+        data: res.user,
+        loading: false,
+        error: null,
+      })))
+      .catch((error) => setUser((prevState) => ({
+        ...prevState,
+        error: error.message,
+        loading: false,
+        data: null,
+      })));
+  };
+
   useEffect(() => {
     getProfilePage();
+    getProfileInfo();
   }, []);
   return {
     response,
     getProfilePage,
+    getProfileInfo,
+    user,
   };
 };

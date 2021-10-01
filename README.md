@@ -58,7 +58,7 @@ yarn create next-app --example with-styled-components with-styled-components-app
 
 - Layout: [figma](https://www.figma.com/file/VkYdIpElN9qdnCfoZ2iwXG/Instalura?node-id=0%3A1)
 
-- [ ] Criar o menu da área logado
+- [x] Criar o menu da área logado
 - [ ] Implementar em código React o layout da página de perfil usando toda a estrutura de componentes criada no módulo 1 e aprimorada ao longo do Curso (usando Grid, Text, Modal...)
 
 **2) Criar o registro de imagens**

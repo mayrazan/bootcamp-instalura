@@ -6,9 +6,17 @@ const sizes = {
     width: 96,
     height: 24,
   },
+  medium: {
+    width: 136,
+    height: 32,
+  },
   large: {
     width: 186,
     height: 46,
+  },
+  mobile: {
+    width: 82,
+    height: 20,
   },
 };
 

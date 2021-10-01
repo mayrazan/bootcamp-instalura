@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Text from '../../foundation/Text';
 
 const InputWrapper = styled.div`
-  margin-bottom: 17px;
+  margin-bottom: ${({ margin }) => (margin || '17px')};
 `;
 
 const Input = styled(Text)`
@@ -43,7 +43,7 @@ export default function TextField({
   const isFieldInvalid = hasError && isTouched;
 
   return (
-    <InputWrapper>
+    <InputWrapper {...props}>
       <Input
         type="text"
         placeholder={placeholder}

@@ -26,4 +26,16 @@ export const userService = {
       throw new Error('Não conseguimos pegar os posts');
     }
   },
+
+  async getProfileInfo(ctx) {
+    const auth = authService(ctx);
+    const session = await auth.getSession();
+    const profilePage = await userService.getProfilePage(ctx);
+    return {
+      user: {
+        ...session,
+        ...profilePage.user,
+      },
+    };
+  },
 };
