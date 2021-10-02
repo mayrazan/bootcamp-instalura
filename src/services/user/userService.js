@@ -27,26 +27,47 @@ export const userService = {
     }
   },
 
-  async getProfileInfo(ctx) {
-    const url = `${BASE_URL}/api/users`;
+  async getGithubInfo(user) {
+    const url = `https://api.github.com/users/${user}`;
     const userInfo = await fetch(url)
       .then((response) => response.json())
       .then((res) => res)
       .catch((error) => {
         console.error(error);
       });
+
+    return {
+      url: userInfo.html_url,
+      avatar: userInfo.avatar_url,
+      name: userInfo.name,
+      followers: userInfo.followers,
+      following: userInfo.following,
+      username: userInfo.login,
+      bio: userInfo.bio,
+    };
+  },
+
+  async getProfileInfo(ctx) {
+    // const url = `${BASE_URL}/api/users`;
+    // const userInfo = await fetch(url)
+    //   .then((response) => response.json())
+    //   .then((res) => res)
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
     const auth = authService(ctx);
     const session = await auth.getSession();
     const profilePage = await userService.getProfilePage(ctx);
-    const { name } = userInfo.data.filter(
-      (item) => item.username === session.username,
-    )[0];
+    const github = await userService.getGithubInfo(session.username);
+    // const { name } = userInfo.data.filter(
+    //   (item) => item.username === session.username
+    // )[0];
 
     return {
       user: {
         ...session,
         ...profilePage.user,
-        name,
+        ...github,
       },
     };
   },

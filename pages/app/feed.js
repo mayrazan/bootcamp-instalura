@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import websitePageLoggedHOC from '../../src/components/wrappers/WebsitePage/loggedArea/hoc';
 import { authService } from '../../src/services/auth/authService';
@@ -30,27 +29,16 @@ export async function getServerSideProps(ctx) {
   const hasActiveSession = await auth.hasActiveSession();
 
   if (hasActiveSession) {
-    const session = await auth.getSession();
     const profilePage = await userService.getProfilePage(ctx);
-    const url = 'https://instalura-api-git-master-omariosouto.vercel.app/api/users';
-    const userInfo = await fetch(url)
-      .then((response) => response.json())
-      .then((res) => res)
-      .catch((error) => {
-        console.error(error);
-      });
-    const { name } = userInfo.data.filter(
-      (item) => item.username === session.username,
-    )[0];
+    const profileInfo = await userService.getProfileInfo(ctx);
+
     return {
       props: {
-        user: {
-          ...session,
-          ...profilePage.user,
-          name,
-        },
+        user: profileInfo.user,
         posts: profilePage.posts,
+        postsNumber: profilePage.posts.length,
         isAuth: hasActiveSession,
+        username: profileInfo.user.username,
       },
     };
   }

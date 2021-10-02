@@ -38,7 +38,7 @@ export default function MobileFooter({ username }) {
           },
           {
             id: 5,
-            icon: `https://github.com/${username}.png`,
+            icon: `${username}`,
             url: '/app/profile',
           },
         ].map((item) => (

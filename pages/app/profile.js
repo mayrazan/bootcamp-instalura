@@ -1,18 +1,23 @@
 /* eslint-disable no-console */
 import React from 'react';
+import PropTypes from 'prop-types';
+import Posts from '../../src/components/authComponents/Posts';
 import ProfileInfo from '../../src/components/authComponents/ProfileInfo';
 import Box from '../../src/components/layout/Box';
 import websitePageLoggedHOC from '../../src/components/wrappers/WebsitePage/loggedArea/hoc';
 import { authService } from '../../src/services/auth/authService';
 import { userService } from '../../src/services/user/userService';
 
-function ProfilePage() {
+function ProfilePage({
+  posts, username, user, postsNumber,
+}) {
   return (
     <Box
       padding={{ xs: '24px 16px 0 11px', md: '30px 0 0' }}
       marginBottom="auto"
     >
-      <ProfileInfo />
+      <ProfileInfo posts={postsNumber} username={username} user={user} />
+      <Posts posts={posts} />
     </Box>
   );
 }
@@ -31,32 +36,30 @@ export default websitePageLoggedHOC(ProfilePage, {
   },
 });
 
+ProfilePage.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  username: PropTypes.string.isRequired,
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  postsNumber: PropTypes.number.isRequired,
+};
+
 export async function getServerSideProps(ctx) {
   const auth = authService(ctx);
   const hasActiveSession = await auth.hasActiveSession();
-  const url = 'https://instalura-api-git-master-omariosouto.vercel.app/api/users';
-  const userInfo = await fetch(url)
-    .then((response) => response.json())
-    .then((res) => res)
-    .catch((error) => {
-      console.error(error);
-    });
 
   if (hasActiveSession) {
-    const session = await auth.getSession();
     const profilePage = await userService.getProfilePage(ctx);
-    const { name } = userInfo.data.filter(
-      (item) => item.username === session.username,
-    )[0];
+    const profileInfo = await userService.getProfileInfo(ctx);
+
     return {
       props: {
-        user: {
-          ...session,
-          ...profilePage.user,
-          name,
-        },
+        user: profileInfo.user,
         posts: profilePage.posts,
+        postsNumber: profilePage.posts.length,
         isAuth: hasActiveSession,
+        username: profileInfo.user.username,
       },
     };
   }

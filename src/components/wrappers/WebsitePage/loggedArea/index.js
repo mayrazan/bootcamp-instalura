@@ -8,6 +8,7 @@ import { useUserService } from '../../../../infra/hooks/useUserService';
 import Header from '../../../authComponents/Header';
 import useWindowSize from '../../../../infra/hooks/useWindowSize';
 import MobileFooter from '../../../authComponents/MobileFooter';
+import Loading from '../../../commons/Loading';
 
 export const useContextLoggedArea = () => React.useContext(WebsitePageLoggedContext);
 
@@ -34,15 +35,17 @@ export default function WebsitePageLoggedWrapper({
     >
       <SEO {...seoProps} />
       {user.loading || response.loading ? (
-        <div>carregando</div>
+        <Loading />
       ) : (
         <Box display="flex" flex="1" flexDirection="column" {...pageBoxProps}>
           {menuProps.display && isDesktop && !menuProps.isFeed && (
-            <Header username={user.data?.username} />
+            <Header username={user.data?.avatar} />
           )}
-          {menuProps.isFeed && <Header username={user.data?.username} />}
+          {menuProps.isFeed && <Header username={user.data?.avatar} />}
           {children}
-          {footerProps.display && !isDesktop && <MobileFooter username={user.data?.username} />}
+          {footerProps.display && !isDesktop && (
+            <MobileFooter username={user.data?.avatar} />
+          )}
         </Box>
       )}
     </WebsitePageLoggedContext.Provider>

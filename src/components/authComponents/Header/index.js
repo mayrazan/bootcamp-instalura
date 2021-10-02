@@ -16,7 +16,9 @@ export default function Header({ username }) {
   return (
     <MenuWrapper>
       <MenuWrapper.LeftSide>
-        <Logo size="medium" />
+        <Link href="/app/feed" color="secondary.main">
+          <Logo size="medium" />
+        </Link>
       </MenuWrapper.LeftSide>
 
       <MenuWrapper.RightSide>
@@ -48,7 +50,7 @@ export default function Header({ username }) {
               },
               {
                 id: 4,
-                icon: `https://github.com/${username}.png`,
+                icon: `${username}`,
                 url: '/app/profile',
               },
             ].map((item) => (

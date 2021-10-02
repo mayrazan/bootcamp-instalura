@@ -10,6 +10,7 @@ import Box from '../../layout/Box';
 import { useForm } from '../../../infra/hooks/forms/useForm';
 import { loginService } from '../../../services/login/loginService';
 import errorAnimation from '../FormCadastro/animations/error.json';
+import Loading from '../../commons/Loading';
 
 const loginSchema = yup.object().shape({
   usuario: yup
@@ -32,6 +33,7 @@ export default function LoginForm({ onSubmit }) {
     initialValues,
     onSubmit: (values) => {
       form.setIsFormDisabled(true);
+      form.setSubmissionStatus(form.formStates.LOADING);
       loginService
         .login({
           username: values.usuario,
@@ -89,6 +91,12 @@ export default function LoginForm({ onSubmit }) {
       >
         Entrar
       </Button>
+
+      {form.isFormSubmited
+        && form.submissionStatus === form.formStates.LOADING && (
+          <Loading width="100px" height="100px" />
+      )}
+
       {form.isFormSubmited && form.submissionStatus === form.formStates.ERROR && (
         <Box display="flex" justifyContent="center">
           <Lottie

@@ -7,6 +7,8 @@ const FooterWrapper = styled.footer`
   background-color: #ffffff;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.04);
   border-radius: 24px 24px 0px 0px;
+  position: sticky;
+  bottom: 0;
 `;
 
 export const ListStyled = styled.ul`
@@ -15,8 +17,8 @@ export const ListStyled = styled.ul`
   align-items: center;
   margin: 0;
   width: 100%;
-    justify-content: space-around;
-    padding: 0;
+  justify-content: space-around;
+  padding: 0;
 `;
 
 export const ImgStyled = styled.img`
