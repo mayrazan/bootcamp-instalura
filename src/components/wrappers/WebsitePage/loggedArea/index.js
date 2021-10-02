@@ -29,6 +29,7 @@ export default function WebsitePageLoggedWrapper({
         loading: response.loading,
         user: user.data,
         username: user.data?.username,
+        posts: response.data?.posts,
       }}
     >
       <SEO {...seoProps} />

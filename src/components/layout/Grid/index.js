@@ -148,6 +148,7 @@ const Grid = {
     ${propToStyle('padding')}
     ${propToStyle('backgroundColor')}
     ${propToStyle('order')}
+    ${propToStyle('gap')}
   `,
 };
 

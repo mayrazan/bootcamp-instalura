@@ -34,6 +34,21 @@ const typographyVariants = {
     fontWeight: '400',
     lineHeight: 1, // 100%
   },
+  profileSM: {
+    fontSize: '16px',
+    fontWeight: '500',
+    lineHeight: 1.25,
+  },
+  profileTextSM: {
+    fontSize: '12px',
+    fontWeight: 'normal',
+    lineHeight: 1,
+  },
+  profile: {
+    fontSize: '24px',
+    fontWeight: '500',
+    lineHeight: 1.15,
+  },
 };
 
 export default typographyVariants;

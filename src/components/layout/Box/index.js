@@ -20,6 +20,8 @@ const Box = styled.div`
   ${propToStyle('marginTop')}
   ${propToStyle('marginBottom')}
   ${propToStyle('marginRight')}
+  ${propToStyle('gap')}
+  ${propToStyle('alignItems')}
   ${({ theme, borderRadiusTheme }) => borderRadiusTheme && `border-radius: ${theme.borderRadius}`};
 `;
 

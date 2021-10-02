@@ -28,13 +28,25 @@ export const userService = {
   },
 
   async getProfileInfo(ctx) {
+    const url = `${BASE_URL}/api/users`;
+    const userInfo = await fetch(url)
+      .then((response) => response.json())
+      .then((res) => res)
+      .catch((error) => {
+        console.error(error);
+      });
     const auth = authService(ctx);
     const session = await auth.getSession();
     const profilePage = await userService.getProfilePage(ctx);
+    const { name } = userInfo.data.filter(
+      (item) => item.username === session.username,
+    )[0];
+
     return {
       user: {
         ...session,
         ...profilePage.user,
+        name,
       },
     };
   },
