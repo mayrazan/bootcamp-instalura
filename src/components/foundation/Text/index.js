@@ -43,6 +43,9 @@ const TextBase = styled.span`
   ${propToStyle('margin')}
   ${propToStyle('maxWidth')}
   ${propToStyle('wordBreak')}
+  ${propToStyle('display')}
+  ${propToStyle('gap')}
+  ${propToStyle('alignItems')}
 `;
 
 export default function Text({

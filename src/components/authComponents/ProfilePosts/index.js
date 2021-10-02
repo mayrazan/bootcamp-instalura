@@ -7,7 +7,7 @@ import HeartIcon from '../SvgIcons/HeartIcon';
 import { PostImage, ContainerImage, LikeStyled } from './style';
 import Text from '../../foundation/Text';
 
-export default function Posts({ posts }) {
+export default function ProfilePosts({ posts }) {
   return (
     <Box display="flex" flexDirection="column" flex={1}>
       {!posts.length ? (
@@ -44,7 +44,7 @@ export default function Posts({ posts }) {
   );
 }
 
-Posts.propTypes = {
+ProfilePosts.propTypes = {
   posts: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string,

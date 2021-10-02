@@ -22,6 +22,7 @@ const Box = styled.div`
   ${propToStyle('marginRight')}
   ${propToStyle('gap')}
   ${propToStyle('alignItems')}
+  ${propToStyle('border')}
   ${({ theme, borderRadiusTheme }) => borderRadiusTheme && `border-radius: ${theme.borderRadius}`};
 `;
 

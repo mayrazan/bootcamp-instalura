@@ -12,6 +12,9 @@ const MenuWrapper = styled.header`
   background-color: #f2f2f2;
   border: 1px solid #d5d5d5;
   min-height: 48px;
+  position: sticky;
+  z-index: 9999;
+  top: 0;
   ${breakpointsMedia({
     md: css`
       width: 100%;

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Posts from '../../src/components/authComponents/Posts';
+import ProfilePosts from '../../src/components/authComponents/ProfilePosts';
 import ProfileInfo from '../../src/components/authComponents/ProfileInfo';
 import Box from '../../src/components/layout/Box';
 import websitePageLoggedHOC from '../../src/components/wrappers/WebsitePage/loggedArea/hoc';
@@ -17,7 +17,7 @@ function ProfilePage({
       marginBottom="auto"
     >
       <ProfileInfo posts={postsNumber} username={username} user={user} />
-      <Posts posts={posts} />
+      <ProfilePosts posts={posts} />
     </Box>
   );
 }

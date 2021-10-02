@@ -49,6 +49,16 @@ const typographyVariants = {
     fontWeight: '500',
     lineHeight: 1.15,
   },
+  profileMobile: {
+    fontSize: '14px',
+    fontWeight: '500',
+    lineHeight: 1,
+  },
+  like: {
+    fontSize: '22px',
+    fontWeight: '500',
+    lineHeight: 1,
+  },
 };
 
 export default typographyVariants;

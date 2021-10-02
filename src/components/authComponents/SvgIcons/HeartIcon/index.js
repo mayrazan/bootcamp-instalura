@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function HeartIcon() {
+export default function HeartIcon({ color }) {
   return (
     <svg
       width="32"
       height="32"
       viewBox="0 0 32 32"
-      fill="none"
+      fill={color ? 'red' : 'none'}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
@@ -19,3 +20,11 @@ export default function HeartIcon() {
     </svg>
   );
 }
+
+HeartIcon.propTypes = {
+  color: PropTypes.bool,
+};
+
+HeartIcon.defaultProps = {
+  color: false,
+};

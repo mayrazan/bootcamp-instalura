@@ -33,7 +33,7 @@ export default function ProfileInfo({ posts, user }) {
               </Text>
             </Box>
             <Box display="flex" flexDirection="column">
-              <Text variant={{ xs: 'profileSM', md: 'profile' }}>{user.followers}</Text>
+              <Text variant={{ xs: 'profileSM', md: 'profile' }}>{user.following}</Text>
               <Text
                 color="tertiary.light"
                 variant={{ xs: 'profileTextSM', md: 'paragraph1' }}
@@ -43,7 +43,7 @@ export default function ProfileInfo({ posts, user }) {
             </Box>
 
             <Box display="flex" flexDirection="column">
-              <Text variant={{ xs: 'profileSM', md: 'profile' }}>{user.following}</Text>
+              <Text variant={{ xs: 'profileSM', md: 'profile' }}>{user.followers}</Text>
               <Text
                 color="tertiary.light"
                 variant={{ xs: 'profileTextSM', md: 'paragraph1' }}

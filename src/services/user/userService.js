@@ -6,6 +6,8 @@ const BASE_URL = isStagingEnv
   ? 'https://instalura-api-git-master-omariosouto.vercel.app'
   : 'https://instalura-api-git-master-omariosouto.vercel.app'; // https://instalura-api.omariosouto.vercel.app
 
+const EXTERNAL_URL = 'https://instalura-api.vercel.app';
+
 export const userService = {
   async getProfilePage(ctx) {
     const url = `${BASE_URL}/api/users/posts`;
@@ -70,5 +72,23 @@ export const userService = {
         ...github,
       },
     };
+  },
+
+  async setLike(id) {
+    const url = `${EXTERNAL_URL}/api/posts/${id}/like`;
+    try {
+      const token = await authService().getToken();
+      const response = await HttpClient(url, {
+        method: 'POST',
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+        body: {},
+      });
+
+      return response.data;
+    } catch (err) {
+      throw new Error('Não conseguimos pegar os posts');
+    }
   },
 };
