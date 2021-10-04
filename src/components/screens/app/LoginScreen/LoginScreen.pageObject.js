@@ -2,7 +2,14 @@ export default class LoginScreenPageObject {
   constructor(cy) {
     this.cy = cy;
 
+    this.cy.visit('/');
+  }
+
+  goToLogin() {
+    this.cy.get('a[href*="/app/login"]').click();
     this.cy.visit('/app/login');
+
+    return this;
   }
 
   fillLoginForm({ user, password }) {
@@ -13,7 +20,9 @@ export default class LoginScreenPageObject {
   }
 
   submitLoginForm() {
-    this.cy.get('#formCadastro button[type="submit"]').click();
+    this.cy
+      .get('#formCadastro button[type="submit"]')
+      .click({ waitForAnimations: true });
 
     return this;
   }

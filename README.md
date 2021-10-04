@@ -74,9 +74,9 @@ yarn create next-app --example with-styled-components with-styled-components-app
 
 **3) Criar a opção de dar like em uma foto do feed**
 
-- [ ] O botão de like por padrão não aparece, somente quando damos "focus" ou "hover" nas imagens
-- [ ] Ao clicar, o coração deverá ficar vermelho (fazer efeito com lottie é um bônus)
-- [ ] O número de likes deve incrementar ou decrementar
+- [x] O botão de like por padrão não aparece, somente quando damos "focus" ou "hover" nas imagens
+- [x] Ao clicar, o coração deverá ficar vermelho (fazer efeito com lottie é um bônus)
+- [x] O número de likes deve incrementar ou decrementar
 
 **Obrigatório**
 
@@ -84,8 +84,8 @@ yarn create next-app --example with-styled-components with-styled-components-app
 
 **Testes**
 
-- [ ] Fazer lazy loading nas imagens do feed
-- [ ] Evite carregar todas na hora que a página carrega
+- [x] Fazer lazy loading nas imagens do feed
+- [x] Evite carregar todas na hora que a página carrega
 - [ ] Fazer testes para todos os serviços criados para abstrair conexão com backend e guardar lógicas em cima disso
 - [ ] Fazer testes para os componentes Criados
 

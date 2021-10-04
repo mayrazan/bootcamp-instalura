@@ -34,7 +34,7 @@ export default function MobileFooter({ username }) {
           {
             id: 4,
             icon: <HeartIcon />,
-            url: '/app/like',
+            url: '/app/feed',
           },
           {
             id: 5,

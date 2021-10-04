@@ -17,26 +17,58 @@ export default function ProfilePosts({ posts }) {
           </Text>
         </Box>
       ) : (
-        <Grid.Container display="flex" flexWrap="wrap">
-          <Grid.Row marginTop={{ xs: '32px', md: '40px' }} flex="1">
-            {posts.map((item) => (
-              <Grid.Col
-                value={{ xs: 3 }}
-                flex={1}
-                display="flex"
-                justifyContent="center"
-                offset={{ xs: 1 }}
-                key={item._id}
+        <Grid.Container
+          display="flex"
+          flexWrap="wrap"
+          paddingRight={{ xs: 0 }}
+          paddingLeft={{ xs: 0 }}
+          maxWidth={{ xs: '340px', md: '768px' }}
+        >
+          <Grid.Row
+            marginTop={{ xs: '16px', md: '32px' }}
+            flex="1"
+            marginRight={{ xs: 0 }}
+            marginLeft={{ xs: 0 }}
+            justifyContent="center"
+          >
+            <Grid.Col
+              value={{ xs: 11 }}
+              flex={1}
+              display="flex"
+              justifyContent="center"
+              offset={{ xs: 0 }}
+              paddingRight={{ xs: 0 }}
+              paddingLeft={{ xs: 0 }}
+            >
+              <Grid.Row
+                flex="1"
+                justifyContent="space-between"
+                gap="4px"
+                marginRight={{ xs: 0 }}
+                marginLeft={{ xs: 0 }}
               >
-                <ContainerImage>
-                  <PostImage src={item.photoUrl} alt="" loading="lazy" />
-                  <LikeStyled>
-                    <HeartIcon />
-                    {item.likes.length}
-                  </LikeStyled>
-                </ContainerImage>
-              </Grid.Col>
-            ))}
+                {posts.map((item) => (
+                  <Grid.Col
+                    value={{ xs: 3 }}
+                    flex={1}
+                    display="flex"
+                    justifyContent="center"
+                    offset={{ xs: 0 }}
+                    key={item._id}
+                    paddingRight={{ xs: 0 }}
+                    paddingLeft={{ xs: 0 }}
+                  >
+                    <ContainerImage>
+                      <PostImage src={item.photoUrl} alt="" loading="lazy" />
+                      <LikeStyled>
+                        <HeartIcon />
+                        {item.likes.length}
+                      </LikeStyled>
+                    </ContainerImage>
+                  </Grid.Col>
+                ))}
+              </Grid.Row>
+            </Grid.Col>
           </Grid.Row>
         </Grid.Container>
       )}

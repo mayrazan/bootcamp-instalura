@@ -7,7 +7,6 @@ import {
 } from './style';
 
 export default function ProfileInfo({ posts, user }) {
-  // const { posts, username, user } = useContextLoggedArea();
   return (
     <Box
       display="flex"

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Logo from '../../../theme/Logo';
@@ -7,11 +7,16 @@ import Link from '../../commons/Link';
 import HomeIcon from '../SvgIcons/HomeIcon';
 import PostIcon from '../SvgIcons/PostIcon';
 import HeartIcon from '../SvgIcons/HeartIcon';
+import Text from '../../foundation/Text';
+import { loginService } from '../../../services/login/loginService';
+import Button from '../../commons/Button';
 
-export default function Header({ username }) {
-  const [search, setSearch] = useState('');
-  const handleChange = (event) => setSearch(event.target.value);
-  const { pathname } = useRouter();
+export default function Header({ username, value, onChange }) {
+  const { pathname, push } = useRouter();
+
+  const handleLogout = async () => {
+    await loginService.logout(null).then(() => push('/'));
+  };
 
   return (
     <MenuWrapper>
@@ -25,8 +30,8 @@ export default function Header({ username }) {
         <TextFieldStyled
           placeholder="Pesquisar"
           name="search"
-          value={search}
-          onChange={handleChange}
+          value={value}
+          onChange={onChange}
           type="search"
           margin="0"
         />
@@ -46,7 +51,7 @@ export default function Header({ username }) {
               {
                 id: 3,
                 icon: <HeartIcon />,
-                url: '/app/like',
+                url: '/app/feed',
               },
               {
                 id: 4,
@@ -54,18 +59,28 @@ export default function Header({ username }) {
                 url: '/app/profile',
               },
             ].map((item) => (
-              <li key={item.id}>
-                <Link href={item.url}>
-                  {item.id === 4 ? (
+              <li key={item.id} className="dropdown">
+                {item.id === 4 ? (
+                  <>
                     <ImgStyled
                       src={item.icon}
                       alt="Foto de Perfil"
                       isActive={pathname === item.url}
                     />
-                  ) : (
-                    item.icon
-                  )}
-                </Link>
+                    <div className="dropdown-content">
+                      <Text tag="a" href="/app/profile">
+                        Meu Perfil
+                      </Text>
+                      <Button ghost onClick={handleLogout} padding="0">
+                        <Text tag="a">
+                          Logout
+                        </Text>
+                      </Button>
+                    </div>
+                  </>
+                ) : (
+                  <Link href={item.url}>{item.icon}</Link>
+                )}
               </li>
             ))}
           </ListStyled>
@@ -77,4 +92,6 @@ export default function Header({ username }) {
 
 Header.propTypes = {
   username: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };

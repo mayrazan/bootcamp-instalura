@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Box from '../../../layout/Box';
 import SEO from '../../../commons/SEO';
@@ -9,8 +9,9 @@ import Header from '../../../authComponents/Header';
 import useWindowSize from '../../../../infra/hooks/useWindowSize';
 import MobileFooter from '../../../authComponents/MobileFooter';
 import Loading from '../../../commons/Loading';
+import { useUserSearch } from '../../../../infra/hooks/useUserSearch';
 
-export const useContextLoggedArea = () => React.useContext(WebsitePageLoggedContext);
+export const useContextLoggedArea = () => useContext(WebsitePageLoggedContext);
 
 export default function WebsitePageLoggedWrapper({
   children,
@@ -20,28 +21,43 @@ export default function WebsitePageLoggedWrapper({
   footerProps,
 }) {
   const { response, user } = useUserService();
+  const {
+    filter, handleChange, users, userSearch,
+  } = useUserSearch();
   const { isDesktop } = useWindowSize();
 
   return (
     <WebsitePageLoggedContext.Provider
       value={{
         data: response.data,
-        error: response.error,
-        loading: response.loading,
         user: user.data,
         username: user.data?.username,
-        posts: response.data?.posts,
+        postsContext: response.data?.posts,
+        filter: filter?.data,
+        handleChange,
+        users: users?.data,
+        userSearch,
       }}
     >
       <SEO {...seoProps} />
-      {user.loading || response.loading ? (
+      {user.loading || response.loading || users.loading || filter.loading ? (
         <Loading />
       ) : (
         <Box display="flex" flex="1" flexDirection="column" {...pageBoxProps}>
           {menuProps.display && isDesktop && !menuProps.isFeed && (
-            <Header username={user.data?.avatar} />
+            <Header
+              username={user.data?.avatar}
+              onChange={handleChange}
+              value={userSearch}
+            />
           )}
-          {menuProps.isFeed && <Header username={user.data?.avatar} />}
+          {menuProps.isFeed && (
+            <Header
+              username={user.data?.avatar}
+              onChange={handleChange}
+              value={userSearch}
+            />
+          )}
           {children}
           {footerProps.display && !isDesktop && (
             <MobileFooter username={user.data?.avatar} />

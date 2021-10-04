@@ -7,9 +7,11 @@ export const WebsitePageContext = React.createContext({
 
 export const WebsitePageLoggedContext = React.createContext({
   data: {},
-  error: '',
-  loading: true,
-  posts: [],
+  postsContext: [],
   user: {},
   username: '',
+  filter: {},
+  handleChange: () => {},
+  users: {},
+  userSearch: '',
 });

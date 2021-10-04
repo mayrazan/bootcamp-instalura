@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Lottie } from '@crello/react-lottie';
 import Box from '../../layout/Box';
 import Text from '../../foundation/Text';
 import HeartIcon from '../SvgIcons/HeartIcon';
@@ -15,11 +16,11 @@ import {
   LikeStyled,
 } from './style';
 import { userService } from '../../../services/user/userService';
+import likeAnimation from '../../commons/animations/like.json';
 
 export default function FeedPost({ post, user }) {
   const [likes, setLikes] = useState({});
   const [totalLikes, setTotalLikes] = useState(post.likes.length);
-  const [playAnimation, setPlayAnimation] = useState(false);
 
   useEffect(() => {
     const likesPost = post.likes.find((like) => like.user === user.id);
@@ -28,13 +29,11 @@ export default function FeedPost({ post, user }) {
 
   const handleLike = async (id) => {
     const postSelected = await post.likes.find((like) => like.user === user.id);
-    setPlayAnimation(!playAnimation);
-    if (likes && totalLikes > 0) {
+    const response = await userService.setLike(id);
+    if (!response) {
       setLikes(!likes);
       setTotalLikes(totalLikes - 1);
     } else {
-      await userService.setLike(id);
-
       setLikes({ ...likes, postSelected });
       setTotalLikes(totalLikes + 1);
     }
@@ -59,7 +58,16 @@ export default function FeedPost({ post, user }) {
         <PostImage src={post.photoUrl} alt="" loading="lazy" />
         <LikeStyled>
           <ButtonStyled ghost onClick={() => handleLike(post._id)}>
-            <HeartIcon color={Boolean(likes)} />
+            <Lottie
+              width="200px"
+              height="200px"
+              playingState={likes ? 'playing' : 'stopped'}
+              config={{
+                animationData: likeAnimation,
+                loop: false,
+                autoplay: false,
+              }}
+            />
           </ButtonStyled>
         </LikeStyled>
       </LikeWrapper>

@@ -40,7 +40,7 @@ export default function LoginForm({ onSubmit }) {
           password: values.senha,
         })
         .then(() => {
-          router.push('/app/profile');
+          router.push('/app/feed');
         })
         .catch((err) => {
           console.error(err);

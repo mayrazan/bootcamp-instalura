@@ -11,7 +11,7 @@ const Container = styled.div`
   max-width: initial;
   ${breakpointsMedia({
     sm: css`
-      max-width: 576px;
+      max-width: ${({ initial }) => (initial || '576px')};
     `,
     md: css`
       max-width: 768px;
@@ -30,6 +30,11 @@ const Container = styled.div`
   ${propToStyle('flex')}
   ${propToStyle('flexWrap')}
   ${propToStyle('alignItems')}
+  ${propToStyle('paddingRight')}
+  ${propToStyle('paddingLeft')}
+  ${propToStyle('maxWidth')}
+  ${propToStyle('marginLeft')}
+  ${propToStyle('marginRight')}
 `;
 
 const Grid = {
@@ -47,7 +52,7 @@ const Grid = {
     ${propToStyle('justifyContent')}
     ${propToStyle('marginBottom')}
     ${propToStyle('flexDirection')}
-
+    ${propToStyle('gap')}
   `,
   Col: styled.div`
     padding-right: 16px;
@@ -150,6 +155,8 @@ const Grid = {
     ${propToStyle('backgroundColor')}
     ${propToStyle('order')}
     ${propToStyle('gap')}
+    ${propToStyle('paddingRight')}
+    ${propToStyle('paddingLeft')}
   `,
 };
 

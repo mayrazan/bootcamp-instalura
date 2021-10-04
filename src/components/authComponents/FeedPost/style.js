@@ -83,17 +83,12 @@ export const LikeStyled = styled.span`
   bottom: 0;
   left: 0;
   right: 0;
-  color: black;
   visibility: hidden;
   opacity: 0;
-  font-size: 40px;
-  text-align: center;
   margin: auto;
-  font-weight: bold;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #6d626287;
   height: 100%;
 `;
