@@ -14,4 +14,5 @@ export const WebsitePageLoggedContext = React.createContext({
   handleChange: () => {},
   users: {},
   userSearch: '',
+  toggleModalPost: () => {},
 });

@@ -10,6 +10,8 @@ import useWindowSize from '../../../../infra/hooks/useWindowSize';
 import MobileFooter from '../../../authComponents/MobileFooter';
 import Loading from '../../../commons/Loading';
 import { useUserSearch } from '../../../../infra/hooks/useUserSearch';
+import ModalPost from '../../../authComponents/ModalPost';
+import CreatePost from '../../../authComponents/CreatePost';
 
 export const useContextLoggedArea = () => useContext(WebsitePageLoggedContext);
 
@@ -25,6 +27,9 @@ export default function WebsitePageLoggedWrapper({
     filter, handleChange, users, userSearch,
   } = useUserSearch();
   const { isDesktop } = useWindowSize();
+  const [isModalOpen, setModalState] = React.useState(false);
+
+  const toggleModalPost = () => setModalState(!isModalOpen);
 
   return (
     <WebsitePageLoggedContext.Provider
@@ -37,6 +42,7 @@ export default function WebsitePageLoggedWrapper({
         handleChange,
         users: users?.data,
         userSearch,
+        toggleModalPost,
       }}
     >
       <SEO {...seoProps} />
@@ -49,6 +55,7 @@ export default function WebsitePageLoggedWrapper({
               username={user.data?.avatar}
               onChange={handleChange}
               value={userSearch}
+              toggleModalPost={toggleModalPost}
             />
           )}
           {menuProps.isFeed && (
@@ -56,11 +63,23 @@ export default function WebsitePageLoggedWrapper({
               username={user.data?.avatar}
               onChange={handleChange}
               value={userSearch}
+              toggleModalPost={toggleModalPost}
             />
           )}
+          <ModalPost
+            isOpen={isModalOpen}
+            onClose={() => {
+              setModalState(false);
+            }}
+          >
+            {(props) => <CreatePost props={props} />}
+          </ModalPost>
           {children}
           {footerProps.display && !isDesktop && (
-            <MobileFooter username={user.data?.avatar} />
+            <MobileFooter
+              username={user.data?.avatar}
+              toggleModalPost={toggleModalPost}
+            />
           )}
         </Box>
       )}

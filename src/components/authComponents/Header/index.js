@@ -11,7 +11,9 @@ import Text from '../../foundation/Text';
 import { loginService } from '../../../services/login/loginService';
 import Button from '../../commons/Button';
 
-export default function Header({ username, value, onChange }) {
+export default function Header({
+  username, value, onChange, toggleModalPost,
+}) {
   const { pathname, push } = useRouter();
 
   const handleLogout = async () => {
@@ -37,52 +39,36 @@ export default function Header({ username, value, onChange }) {
         />
         <div>
           <ListStyled>
-            {[
-              {
-                id: 1,
-                icon: <PostIcon size="desktop" />,
-                url: '/app/modal',
-              },
-              {
-                id: 2,
-                icon: <HomeIcon isActive={pathname === '/app/feed'} />,
-                url: '/app/feed',
-              },
-              {
-                id: 3,
-                icon: <HeartIcon />,
-                url: '/app/feed',
-              },
-              {
-                id: 4,
-                icon: `${username}`,
-                url: '/app/profile',
-              },
-            ].map((item) => (
-              <li key={item.id} className="dropdown">
-                {item.id === 4 ? (
-                  <>
-                    <ImgStyled
-                      src={item.icon}
-                      alt="Foto de Perfil"
-                      isActive={pathname === item.url}
-                    />
-                    <div className="dropdown-content">
-                      <Text tag="a" href="/app/profile">
-                        Meu Perfil
-                      </Text>
-                      <Button ghost onClick={handleLogout} padding="0">
-                        <Text tag="a">
-                          Logout
-                        </Text>
-                      </Button>
-                    </div>
-                  </>
-                ) : (
-                  <Link href={item.url}>{item.icon}</Link>
-                )}
-              </li>
-            ))}
+            <li>
+              <Button ghost onClick={toggleModalPost} padding="0">
+                <PostIcon size="desktop" />
+              </Button>
+            </li>
+            <li>
+              <Link href="/app/feed">
+                <HomeIcon isActive={pathname === '/app/feed'} />
+              </Link>
+            </li>
+            <li>
+              <Link href="/app/feed">
+                <HeartIcon />
+              </Link>
+            </li>
+            <li className="dropdown">
+              <ImgStyled
+                src={`${username}`}
+                alt="Foto de Perfil"
+                isActive={pathname === '/app/profile'}
+              />
+              <div className="dropdown-content">
+                <Text tag="a" href="/app/profile">
+                  Meu Perfil
+                </Text>
+                <Button ghost onClick={handleLogout} padding="0">
+                  <Text tag="a">Logout</Text>
+                </Button>
+              </div>
+            </li>
           </ListStyled>
         </div>
       </MenuWrapper.RightSide>
@@ -94,4 +80,5 @@ Header.propTypes = {
   username: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  toggleModalPost: PropTypes.func.isRequired,
 };

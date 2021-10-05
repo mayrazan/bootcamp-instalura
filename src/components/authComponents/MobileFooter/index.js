@@ -7,55 +7,43 @@ import HomeIcon from '../SvgIcons/HomeIcon';
 import PostIcon from '../SvgIcons/PostIcon';
 import HeartIcon from '../SvgIcons/HeartIcon';
 import SearchIcon from '../SvgIcons/SearchIcon';
+import Button from '../../commons/Button';
 
-export default function MobileFooter({ username }) {
+export default function MobileFooter({ username, toggleModalPost }) {
   const { pathname } = useRouter();
 
   return (
     <FooterWrapper>
       <ListStyled>
-        {[
-          {
-            id: 1,
-            icon: <HomeIcon isActive={pathname === '/app/feed'} />,
-            url: '/app/feed',
-          },
-          {
-            id: 2,
-            icon: <SearchIcon />,
-            url: '/app/search',
-          },
-          {
-            id: 3,
-            icon: <PostIcon size="mobile" />,
-            url: '/app/modal',
-          },
-
-          {
-            id: 4,
-            icon: <HeartIcon />,
-            url: '/app/feed',
-          },
-          {
-            id: 5,
-            icon: `${username}`,
-            url: '/app/profile',
-          },
-        ].map((item) => (
-          <li key={item.id}>
-            <Link href={item.url}>
-              {item.id === 5 ? (
-                <ImgStyled
-                  src={item.icon}
-                  alt="Foto de Perfil"
-                  isActive={pathname === item.url}
-                />
-              ) : (
-                item.icon
-              )}
-            </Link>
-          </li>
-        ))}
+        <li>
+          <Link href="/app/feed">
+            <HomeIcon isActive={pathname === '/app/feed'} />
+          </Link>
+        </li>
+        <li>
+          <Link href="/app/search">
+            <SearchIcon isActive={pathname === '/app/search'} />
+          </Link>
+        </li>
+        <li>
+          <Button ghost onClick={toggleModalPost} padding="0">
+            <PostIcon size="mobile" />
+          </Button>
+        </li>
+        <li>
+          <Link href="/app/feed">
+            <HeartIcon />
+          </Link>
+        </li>
+        <li>
+          <Link href="/app/profile">
+            <ImgStyled
+              src={`${username}`}
+              alt="Foto de Perfil"
+              isActive={pathname === '/app/profile'}
+            />
+          </Link>
+        </li>
       </ListStyled>
     </FooterWrapper>
   );
@@ -63,4 +51,5 @@ export default function MobileFooter({ username }) {
 
 MobileFooter.propTypes = {
   username: PropTypes.string.isRequired,
+  toggleModalPost: PropTypes.func.isRequired,
 };

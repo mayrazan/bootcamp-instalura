@@ -63,7 +63,7 @@ yarn create next-app --example with-styled-components with-styled-components-app
 
 **2) Criar o registro de imagens**
 
-- [ ] No menu existe um botão "+" que ao ser clicado, deverá abrir um modal: [Layout](https://www.figma.com/file/VkYdIpElN9qdnCfoZ2iwXG/Instalura?node-id=81%3A1123)
+- [x] No menu existe um botão "+" que ao ser clicado, deverá abrir um modal: [Layout](https://www.figma.com/file/VkYdIpElN9qdnCfoZ2iwXG/Instalura?node-id=81%3A1123)
 - [ ] Esse modal deverá receber uma URL, após isso o botão avançar irá ser mostrado
 - [ ] Após avançar, o usuário poderá clicar em um quadrado, estilo o próprio instagram, com o preview da URL que ele inseriu na etapa anterior.
       [Layout](https://www.figma.com/file/VkYdIpElN9qdnCfoZ2iwXG/Instalura?node-id=81%3A1418)
@@ -88,6 +88,10 @@ yarn create next-app --example with-styled-components with-styled-components-app
 - [x] Evite carregar todas na hora que a página carrega
 - [ ] Fazer testes para todos os serviços criados para abstrair conexão com backend e guardar lógicas em cima disso
 - [ ] Fazer testes para os componentes Criados
+
+**Typescript e Storybook**
+
+- [ ] Como desafio final supremo, você precisa migrar todos os componentes que temos no projeto para dentro do Storybook, além de mudar trechos da base de código que hoje é em javascript para typescript.
 
 ## Endpoints Importantes para esse desafio
 
