@@ -59,7 +59,12 @@ export default function ProfilePosts({ posts }) {
                     paddingLeft={{ xs: 0 }}
                   >
                     <ContainerImage>
-                      <PostImage src={item.photoUrl} alt="" loading="lazy" />
+                      <PostImage
+                        src={item.photoUrl}
+                        alt=""
+                        loading="lazy"
+                        className={`filter-${item.filter}`}
+                      />
                       <LikeStyled>
                         <HeartIcon />
                         {item.likes.length}

@@ -55,7 +55,12 @@ export default function FeedPost({ post, user }) {
       </div>
 
       <LikeWrapper>
-        <PostImage src={post.photoUrl} alt="" loading="lazy" />
+        <PostImage
+          src={post.photoUrl}
+          alt=""
+          loading="lazy"
+          className={`filter-${post.filter}`}
+        />
         <LikeStyled>
           <ButtonStyled ghost onClick={() => handleLike(post._id)}>
             <Lottie
@@ -93,6 +98,7 @@ export default function FeedPost({ post, user }) {
 FeedPost.propTypes = {
   post: PropTypes.shape({
     photoUrl: PropTypes.string,
+    filter: PropTypes.string,
     _id: PropTypes.string,
     likes: PropTypes.arrayOf(
       PropTypes.shape({
