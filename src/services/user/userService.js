@@ -95,4 +95,26 @@ export const userService = {
       });
     return userInfo.data;
   },
+
+  async sendPost(data) {
+    const url = `${BASE_URL}/api/posts`;
+    try {
+      const token = await authService().getToken();
+      const response = await HttpClient(url, {
+        method: 'POST',
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+        body: data,
+      });
+
+      console.log(response);
+      if (response.data) {
+        return response.data;
+      }
+      return undefined;
+    } catch (err) {
+      return undefined;
+    }
+  },
 };

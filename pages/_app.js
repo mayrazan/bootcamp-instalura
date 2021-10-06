@@ -1,6 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
+import '../src/lib/instagram.min.css';
+import '../src/lib/flickity.css';
 
 export default function App(props) {
   const { Component, pageProps } = props;
@@ -13,10 +15,7 @@ export default function App(props) {
           rel="stylesheet"
         />
       </Head>
-
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <Component {...pageProps} />
-
     </>
   );
 }

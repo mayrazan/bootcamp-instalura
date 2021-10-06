@@ -64,13 +64,13 @@ yarn create next-app --example with-styled-components with-styled-components-app
 **2) Criar o registro de imagens**
 
 - [x] No menu existe um botão "+" que ao ser clicado, deverá abrir um modal: [Layout](https://www.figma.com/file/VkYdIpElN9qdnCfoZ2iwXG/Instalura?node-id=81%3A1123)
-- [ ] Esse modal deverá receber uma URL, após isso o botão avançar irá ser mostrado
-- [ ] Após avançar, o usuário poderá clicar em um quadrado, estilo o próprio instagram, com o preview da URL que ele inseriu na etapa anterior.
+- [x] Esse modal deverá receber uma URL, após isso o botão avançar irá ser mostrado
+- [x] Após avançar, o usuário poderá clicar em um quadrado, estilo o próprio instagram, com o preview da URL que ele inseriu na etapa anterior.
       [Layout](https://www.figma.com/file/VkYdIpElN9qdnCfoZ2iwXG/Instalura?node-id=81%3A1418)
-- [ ] Esse click vai uma classe CSS que aplica um filtro estilo instagram baseado nesse [projeto](https://picturepan2.github.io/instagram.css/)
-- [ ] [Carrossel](https://css-tricks.com/css-only-carousel/) para mostrar as diversas opções
-- [ ] Ao final, quando o usuário clicar em postar, deve ser enviado para esse endpoint: /api/posts/
-- [ ] O post deve aparecer no feed do usuário
+- [x] Esse click vai uma classe CSS que aplica um filtro estilo instagram baseado nesse [projeto](https://picturepan2.github.io/instagram.css/)
+- [x] [Carrossel](https://css-tricks.com/css-only-carousel/) para mostrar as diversas opções
+- [x] Ao final, quando o usuário clicar em postar, deve ser enviado para esse endpoint: /api/posts/
+- [x] O post deve aparecer no feed do usuário
 
 **3) Criar a opção de dar like em uma foto do feed**
 

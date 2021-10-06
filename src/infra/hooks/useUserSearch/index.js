@@ -49,10 +49,10 @@ export const useUserSearch = () => {
 
   const searchUser = () => {
     if (!userSearch) {
-      setFilter({ ...filter, data: users.data });
+      setFilter((prevState) => ({ ...prevState, data: users.data }));
     }
     const search = users.data?.filter((item) => item.username.includes(userSearch));
-    setFilter({ ...filter, data: search });
+    setFilter((prevState) => ({ ...prevState, data: search }));
   };
 
   const handleChange = (event) => {

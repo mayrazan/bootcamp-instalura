@@ -16,10 +16,11 @@ export const CloseButton = styled.div`
 export const ImagePreviewContainer = styled.div`
   background-color: #d5d5d5;
   width: 375px;
-  height: 375px;
   display: flex;
   align-items: center;
   justify-content: center;
+  max-height: 375px;
+  height: 100%;
 `;
 
 export const ImagePreview = styled.img`
@@ -45,7 +46,7 @@ export const ContainerInputButton = styled.div`
   box-sizing: border-box;
   border-radius: 10px;
   height: 48px;
-  border: 1px solid #88989E;
+  border: 1px solid #88989e;
   margin: 0 0 8px;
 `;
 
@@ -54,4 +55,13 @@ export const ButtonStyled = styled(Button)`
   border: none;
   padding: 0;
   outline: 0;
+`;
+
+export const ButtonStyledFilter = styled(Button)`
+  border: none;
+  padding: 0;
+  outline: 0;
+  background: none;
+  display: flex;
+  flex-direction: column;
 `;
