@@ -80,7 +80,7 @@ yarn create next-app --example with-styled-components with-styled-components-app
 
 **Obrigatório**
 
-- [ ] Criar um Teste no cypress fazendo o fluxo de adicionar uma imagem no Feed
+- [x] Criar um Teste no cypress fazendo o fluxo de adicionar uma imagem no Feed
 
 **Testes**
 
