@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ProfileImage = styled.img`
-  border: 3.27273px solid #f2f2f2;
+  border: 3.27273px solid ${({ theme }) => theme.colors.background.main.color};
   width: ${({ width }) => width || '48px'};
   height: ${({ height }) => height || '48px'};
   border-radius: 50%;

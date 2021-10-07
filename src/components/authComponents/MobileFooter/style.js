@@ -4,7 +4,7 @@ const FooterWrapper = styled.footer`
   display: flex;
   align-items: center;
   min-height: 64px;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.background.light.color};
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.04);
   border-radius: 24px 24px 0px 0px;
   position: sticky;
@@ -27,7 +27,7 @@ export const ImgStyled = styled.img`
 
   ${({ isActive }) => isActive
     && css`
-      border: 3px solid #d7385e;
+      border: 3px solid ${({ theme }) => theme.colors.primary.main.color};
     `}
 `;
 

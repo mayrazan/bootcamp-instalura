@@ -9,8 +9,8 @@ const MenuWrapper = styled.header`
   justify-content: center;
   flex-wrap: wrap;
   padding: 15px 0;
-  background-color: #f2f2f2;
-  border: 1px solid #d5d5d5;
+  background-color: ${({ theme }) => theme.colors.background.main.color};
+  border: 1px solid ${({ theme }) => theme.colors.borders.secondary.color};
   min-height: 48px;
   position: sticky;
   z-index: 9999;
@@ -71,7 +71,7 @@ export const ListStyled = styled.ul`
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: ${({ theme }) => theme.colors.borders.main.color};
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -100,7 +100,7 @@ export const ImgStyled = styled.img`
 
   ${({ isActive }) => isActive
     && css`
-      border: 3px solid #d7385e;
+      border: 3px solid  ${({ theme }) => theme.colors.primary.main.color};
     `}
 `;
 

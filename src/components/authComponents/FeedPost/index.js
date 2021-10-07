@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Lottie } from '@crello/react-lottie';
+import { useTheme } from 'styled-components';
 import Box from '../../layout/Box';
 import Text from '../../foundation/Text';
 import HeartIcon from '../SvgIcons/HeartIcon';
@@ -21,6 +22,7 @@ import likeAnimation from '../../commons/animations/like.json';
 export default function FeedPost({ post, user }) {
   const [likes, setLikes] = useState({});
   const [totalLikes, setTotalLikes] = useState(post.likes.length);
+  const theme = useTheme();
 
   useEffect(() => {
     const likesPost = post.likes.find((like) => like.user === user.id);
@@ -42,8 +44,8 @@ export default function FeedPost({ post, user }) {
     <Box
       display="flex"
       flexDirection="column"
-      backgroundColor="#FFFFFF"
-      border="0.797694px solid #F1F1F1"
+      backgroundColor={theme.colors.background.light.color}
+      border={`0.797694px solid ${theme.colors.borders.main.color}`}
     >
       <div>
         <ProfileContainer>

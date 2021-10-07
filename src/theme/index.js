@@ -13,6 +13,9 @@ const colors = {
     main: {
       color: '#F1F1F1',
     },
+    secondary: {
+      color: '#d5d5d5',
+    },
   },
   primary: {
     main: {

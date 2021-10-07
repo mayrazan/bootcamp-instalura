@@ -6,7 +6,7 @@ export const ProfileImage = styled.img`
   height: 88px;
   border-radius: 50%;
 
-  border: 10.0723px solid #f2f2f2;
+  border: 10.0723px solid ${({ theme }) => theme.colors.background.main.color};
 
   ${breakpointsMedia({
     md: css`
