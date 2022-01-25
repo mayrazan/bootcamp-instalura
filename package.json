@@ -30,7 +30,7 @@
     "graphql": "^15.6.0",
     "graphql-request": "^3.5.0",
     "init": "^0.1.2",
-    "jest": "^27.4.3",
+    "jest": "^27.4.7",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "next": "latest",
